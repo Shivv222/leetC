@@ -1,18 +1,21 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        vector<int>count (26, 0);
-
-        for(char &ch:s){
-            count[ch-'a']++;
-        } 
-
-        for(char &ch:t){
-            count[ch-'a']--;
+        if(s.size() != t.size()){
+            return false;
         }
-        bool allzeroes = all_of(begin(count), end(count), [](int element){
-            return element==0;
-        });
-        return allzeroes;
+
+        unordered_map<char, int> sun;
+        unordered_map<char, int> moon;
+
+        for(int i=0;i<s.size();i++){
+            sun[s[i]]++;
+            moon[t[i]]++;
+        }
+        for(int i=0;i<s.size();i++){
+        if (sun[t[i]]!=moon[t[i]]){
+            return false;
+        }}
+        return true;
     }
 };
